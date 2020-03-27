@@ -1,0 +1,10 @@
+@import "../css/normalize.scss";
+
+$color : yellow;
+
+body {
+    background-color : $color;
+}
+h1 {
+    color: red;
+}
