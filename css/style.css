@@ -303,8 +303,58 @@ template {
 [hidden] {
   display: none; }
 
-body {
-  background-color: yellow; }
+.keyboard-wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 1000px;
+  height: 1000px;
+  background-color: #81c9b2;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Lato'; }
 
-h1 {
-  color: red; }
+.keyboard-input {
+  position: relative;
+  margin-top: 3%;
+  height: 200px;
+  width: 90%;
+  min-width: 90%;
+  max-width: 90%;
+  min-height: 200px;
+  max-height: 250px; }
+
+.keyboard {
+  margin: 0 auto;
+  position: relative;
+  margin-top: 20%;
+  height: 200px;
+  width: 90%;
+  padding: 5px 0;
+  background: #637874;
+  border: 1px solid #202625;
+  border-radius: 5px;
+  font-size: 1.05em;
+  font-weight: 700; }
+  .keyboard-key {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+    border-radius: 4px;
+    border: 1px solid #202625;
+    color: #2c2721;
+    background: #548b82;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: top;
+    transition: .1s ease; }
+    .keyboard-key__wide {
+      width: 100px; }
+    .keyboard-key__active {
+      background-color: #2fb29c;
+      border-radius: 50px; }
+    .keyboard-key:hover {
+      background: #367e73; }
