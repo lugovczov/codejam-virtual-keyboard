@@ -306,8 +306,8 @@ template {
 .keyboard-wrapper {
   position: relative;
   margin: 0 auto;
+  padding-bottom: 3%;
   width: 1000px;
-  height: 1000px;
   background-color: #81c9b2;
   text-align: center;
   font-size: 16px;
@@ -324,17 +324,22 @@ template {
   max-height: 250px; }
 
 .keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin: 0 auto;
   position: relative;
-  margin-top: 20%;
-  height: 200px;
-  width: 90%;
+  margin-top: 15%;
+  width: 80%;
   padding: 5px 0;
   background: #637874;
   border: 1px solid #202625;
   border-radius: 5px;
   font-size: 1.05em;
-  font-weight: 700; }
+  font-weight: 700;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; }
   .keyboard-key {
     position: relative;
     height: 40px;
@@ -352,9 +357,13 @@ template {
     vertical-align: top;
     transition: .1s ease; }
     .keyboard-key__wide {
-      width: 100px; }
+      width: 94px; }
+    .keyboard-key__extra-wide {
+      width: 200px; }
+    .keyboard-key:hover {
+      background-color: #367e73; }
     .keyboard-key__active {
       background-color: #2fb29c;
       border-radius: 50px; }
-    .keyboard-key:hover {
-      background: #367e73; }
+      .keyboard-key__active:hover {
+        background-color: #2fb29c; }

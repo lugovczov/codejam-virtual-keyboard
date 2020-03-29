@@ -1,14 +1,10 @@
 @import "../css/normalize.scss";
 
-
-body {
-}
-
 .keyboard-wrapper {
     position: relative;
     margin: 0 auto;
+    padding-bottom: 3%;
     width: 1000px;
-    height: 1000px;
     background-color : #81c9b2;
     text-align: center;
     font-size: 16px;
@@ -27,17 +23,22 @@ body {
 }
 
 .keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin: 0 auto;
     position: relative;
-    margin-top: 20%;
-    height: 200px;
-    width: 90%;
+    margin-top: 15%;
+    width: 80%;
     padding: 5px 0;
     background: #637874;
     border: 1px solid #202625;
     border-radius: 5px;
     font-size: 1.05em;
     font-weight: 700;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 
     &-key {
         position: relative;
@@ -57,18 +58,26 @@ body {
         transition: .1s ease;
 
         &__wide {
-            width: 100px;
+            width: 94px;
+        }
+
+        &__extra-wide {
+            width: 200px;
+        }
+
+        &:hover {
+            background-color: #367e73;
         }
 
         //добавлять актив при нажатии на клавиатууру и при нажатии мышью
         &__active {
             background-color: #2fb29c;
             border-radius: 50px;
+            &:hover {
+                background-color: #2fb29c;
+            }
         }
         
-        &:hover {
-            background: #367e73;
-        }
     }
 }
 
