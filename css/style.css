@@ -303,6 +303,9 @@ template {
 [hidden] {
   display: none; }
 
+body {
+  background-color: #81c9b2; }
+
 .keyboard-wrapper {
   position: relative;
   margin: 0 auto;
@@ -317,11 +320,13 @@ template {
   position: relative;
   margin-top: 3%;
   height: 200px;
-  width: 90%;
-  min-width: 90%;
-  max-width: 90%;
+  border-radius: 5px;
+  width: 80%;
+  min-width: 80%;
+  max-width: 80%;
   min-height: 200px;
-  max-height: 250px; }
+  max-height: 250px;
+  outline: none; }
 
 .keyboard {
   display: flex;
@@ -329,7 +334,7 @@ template {
   justify-content: space-between;
   margin: 0 auto;
   position: relative;
-  margin-top: 15%;
+  margin-top: 5%;
   width: 80%;
   padding: 5px 0;
   background: #637874;
@@ -355,7 +360,7 @@ template {
     align-items: center;
     justify-content: center;
     vertical-align: top;
-    transition: .1s ease; }
+    transition: .2s ease; }
     .keyboard-key__wide {
       width: 94px; }
     .keyboard-key__extra-wide {
