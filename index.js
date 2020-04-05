@@ -6,9 +6,9 @@ const keyMode = {
 };
 
 const getKeyboardWrapper = () => {
-  let main = document.createElement('div');
-  let input = document.createElement('textarea');
-  let keyboard = document.createElement('div');
+  const main = document.createElement('div');
+  const input = document.createElement('textarea');
+  const keyboard = document.createElement('div');
 
   main.classList.add('keyboard-wrapper');
   input.classList.add('keyboard-input');
@@ -19,38 +19,11 @@ const getKeyboardWrapper = () => {
   main.append(keyboard);
 };
 
-const lang = () => {
-  let x = String;
-  const localLang = localStorage.localLang;
-  console.log(localLang);
-  
-  switch (localLang) {
-    case 'En':
-      x = keyMode.keyEn;
-      break;
-    case 'Ру':
-      x = keyMode.keyRu;
-      break;
-    case 'EN':
-      x = keyMode.keyEnShift;
-      break;
-    case 'РУ':
-      x = keyMode.keyRuShift;
-      break;
-    default:
-      x = keyMode.keyRu;
-      break;
-  }
-  
-  createKeys(x);
-};
-
 const createKeys = (x) => {
-
-  let keyboard = document.querySelector('.keyboard');
+  const keyboard = document.querySelector('.keyboard');
 
   x.forEach((element) => {
-    let keyboardKey = document.createElement('button');
+    const keyboardKey = document.createElement('button');
     keyboardKey.innerText = `${element}`;
 
     if (element.length > 3) {
@@ -66,93 +39,106 @@ const createKeys = (x) => {
   });
   selectedKey();
 };
-
-const selectedKey = () => {
-  let keyboard = document.querySelectorAll('.keyboard-key');
-  let input = document.querySelector('.keyboard-input');
-
-  function inputKey(key) {
-    if (key === 'Backspace') {
-      input.value = input.value.substring(0, input.value.length - 1);
-    } else if (key === 'Del') {
-      input.value = input.value.substring(0, input.value.length - 1);
-    } else if (key === 'Enter') {
-      input.value += '\n';
-    } else if (key === ' ') {
-      input.value += ' ';
-    } else if (key === 'Tab') {
-      input.value += '    ';
-    } else if (key === 'CapsLock') {
-      pressShift();
-    } else if (key.length === 1) {
-      input.value += key;
-    }
-  }
-
-  function pressShift() {
-    const langKeyboard = document.querySelectorAll('.keyboard-key')[64].innerText;
-    if (langKeyboard === 'En') {
+const pressShift = () => {
+  const langKeyboard = document.querySelectorAll('.keyboard-key')[64].innerText;
+  switch (langKeyboard) {
+    case 'En':
       document.querySelector('.keyboard').innerHTML = ' ';
       createKeys(keyMode.keyEnShift);
-    } else if (langKeyboard === 'EN') {
+      break;
+    case 'EN':
       document.querySelector('.keyboard').innerHTML = ' ';
       createKeys(keyMode.keyEn);
-    } else if (langKeyboard === 'Ру') {
+      break;
+    case 'Ру':
       document.querySelector('.keyboard').innerHTML = ' ';
       createKeys(keyMode.keyRuShift);
-    } else if (langKeyboard === 'РУ') {
+      break;
+    case 'РУ':
       document.querySelector('.keyboard').innerHTML = ' ';
       createKeys(keyMode.keyRu);
+      break;
+    default:
+      break;
+  }
+};
+
+
+const selectedKey = () => {
+  const keyboard = document.querySelectorAll('.keyboard-key');
+  const input = document.querySelector('.keyboard-input');
+
+  function inputKey(key) {
+    if (key.length === 1) {
+      input.value += key;
+    }
+    switch (key) {
+      case 'Backspace':
+        input.value = input.value.substring(0, input.value.length - 1);
+        break;
+      case 'Del':
+        input.value = input.value.substring(0, input.value.length - 1);
+        break;
+      case 'Enter':
+        input.value += '\n';
+        break;
+      case '':
+        input.value += ' ';
+        break;
+      case 'Tab':
+        input.value += '    ';
+        break;
+      case 'CapsLock':
+        pressShift();
+        break;
+      default:
+        break;
     }
   }
 
   keyboard.forEach((el) => {
-    el.onmousedown = function (event) {
+    el.addEventListener('mousedown', () => {
       el.classList.add('keyboard-key__active');
       if (el.innerText === 'Shift') {
         pressShift();
       }
-    }
-    el.onmouseleave = function (event) {
+    });
+    el.addEventListener('mouseleave', () => {
       el.classList.remove('keyboard-key__active');
-      // if (el.innerText === 'Shift') {
-      //   pressShift();
-      // }
-    }
-    el.onmouseup = function(event) {
+    });
+    el.addEventListener('mouseup', () => {
       if (el.innerText === 'Shift') {
         pressShift();
       }
       el.classList.remove('keyboard-key__active');
       inputKey(el.innerText);
-    }
+    });
+
+    // el.onmousedown = function () {
+    //   el.classList.add('keyboard-key__active');
+    //   if (el.innerText === 'Shift') {
+    //     pressShift();
+    //   }
+    // };
+    // el.onmouseleave = function () {
+    //   el.classList.remove('keyboard-key__active');
+    // };
+    // el.onmouseup = function () {
+    //   if (el.innerText === 'Shift') {
+    //     pressShift();
+    //   }
+    //   el.classList.remove('keyboard-key__active');
+    //   inputKey(el.innerText);
+    // };
   });
 };
 
 const pressKey = () => {
   let keyboard = document.querySelectorAll('.keyboard-key');
-  let input = document.querySelector('.keyboard-input');
-
-  function pressShift() {
-    const langKeyboard = document.querySelectorAll('.keyboard-key')[64].innerText;
-    if (langKeyboard === 'En') {
-      document.querySelector('.keyboard').innerHTML = ' ';
-      createKeys(keyMode.keyEnShift);
-    } else if (langKeyboard === 'EN') {
-      document.querySelector('.keyboard').innerHTML = ' ';
-      createKeys(keyMode.keyEn);
-    } else if (langKeyboard === 'Ру') {
-      document.querySelector('.keyboard').innerHTML = ' ';
-      createKeys(keyMode.keyRuShift);
-    } else if (langKeyboard === 'РУ') {
-      document.querySelector('.keyboard').innerHTML = ' ';
-      createKeys(keyMode.keyRu);
-    }
-  }
+  const input = document.querySelector('.keyboard-input');
 
   document.addEventListener('keydown', (el) => {
     el.preventDefault();
-    console.log(el.key);
     const langKeyboard = document.querySelectorAll('.keyboard-key')[64].innerText.toLowerCase();
     function activeKey() {
       keyboard.forEach((vir) => {
@@ -242,13 +228,32 @@ const pressKey = () => {
       keyboard = document.querySelectorAll('.keyboard-key');
     }
   });
-
-  localStorage.setItem('localLang', document.querySelectorAll('.keyboard-key')[64].innerText);
-  console.log(localStorage.setItem('localLang', document.querySelectorAll('.keyboard-key')[64].innerText));
 };
 
-window.onload = function () {
-  console.log('hello');
+const lang = () => {
+  let x = String;
+  const localPersonalLang = localStorage.localLang;
+  switch (localPersonalLang) {
+    case 'En':
+      x = keyMode.keyEn;
+      break;
+    case 'Ру':
+      x = keyMode.keyRu;
+      break;
+    case 'EN':
+      x = keyMode.keyEnShift;
+      break;
+    case 'РУ':
+      x = keyMode.keyRuShift;
+      break;
+    default:
+      x = keyMode.keyRu;
+      break;
+  }
+  createKeys(x);
+};
+
+window.onload = function load() {
   getKeyboardWrapper();
   lang();
   pressKey();
