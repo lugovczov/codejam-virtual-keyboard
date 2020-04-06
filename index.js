@@ -9,14 +9,18 @@ const getKeyboardWrapper = () => {
   const main = document.createElement('div');
   const input = document.createElement('textarea');
   const keyboard = document.createElement('div');
+  const description = document.createElement('p');
 
   main.classList.add('keyboard-wrapper');
   input.classList.add('keyboard-input');
   keyboard.classList.add('keyboard');
+  description.classList.add('keyboard-description');
+  description.innerText = 'Implemented in Windows OS. For change language press (Shift+Ctrl+Alt)';
 
   document.body.append(main);
   main.append(input);
   main.append(keyboard);
+  main.append(description);
 };
 
 const createKeys = (x) => {
@@ -209,11 +213,11 @@ const pressKey = () => {
     } else if (el.key === 'ArrowRight') {
       activeKey();
       input.value += '→';
-    } else if (el.altKey && el.ctrlKey && el.shiftKey && (langKeyboard === 'ру')) {
+    } else if (el.shiftKey && el.ctrlKey && el.altKey && (langKeyboard === 'ру')) {
       document.querySelector('.keyboard').innerHTML = ' ';
       createKeys(keyMode.keyEn);
       localStorage.setItem('localLang', document.querySelectorAll('.keyboard-key')[64].innerText);
-    } else if (el.altKey && el.ctrlKey && el.shiftKey && (langKeyboard === 'en')) {
+    } else if (el.shiftKey && el.ctrlKey && el.altKey && (langKeyboard === 'en')) {
       document.querySelector('.keyboard').innerHTML = ' ';
       createKeys(keyMode.keyRu);
       localStorage.setItem('localLang', document.querySelectorAll('.keyboard-key')[64].innerText);

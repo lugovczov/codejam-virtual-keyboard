@@ -328,6 +328,12 @@ body {
   max-height: 250px;
   outline: none; }
 
+.keyboard-description {
+  margin: 15px auto;
+  width: 80%;
+  color: #235a42;
+  font-style: italic; }
+
 .keyboard {
   display: flex;
   flex-wrap: wrap;
