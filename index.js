@@ -23,14 +23,17 @@ const getKeyboardWrapper = () => {
   main.append(description);
 };
 
-const createKeys = (x) => {
+const createKeys = (x, target) => {
   const keyboard = document.querySelector('.keyboard');
 
   x.forEach((element) => {
     const keyboardKeyCreate = document.createElement('button');
     keyboardKeyCreate.innerText = `${element}`;
-
-    if (element.length > 3) {
+    if (element === target) {
+      keyboardKeyCreate.classList.add('keyboard-key');
+      keyboardKeyCreate.classList.add('keyboard-key__wide');
+      keyboardKeyCreate.classList.add('keyboard-key__active');
+    } else if (element.length > 3) {
       keyboardKeyCreate.classList.add('keyboard-key');
       keyboardKeyCreate.classList.add('keyboard-key__wide');
     } else if (element === ' ') {
@@ -46,24 +49,24 @@ const createKeys = (x) => {
 const selectedKey = () => {
   const keyboardKey = document.querySelectorAll('.keyboard-key');
   const input = document.querySelector('.keyboard-input');
-  function pressShift() {
+  function pressShift(target) {
     const langKeyboard = document.querySelectorAll('.keyboard-key')[64].innerText;
     switch (langKeyboard) {
       case 'En':
         document.querySelector('.keyboard').innerHTML = ' ';
-        createKeys(keyMode.keyEnShift);
+        createKeys(keyMode.keyEnShift, target);
         break;
       case 'EN':
         document.querySelector('.keyboard').innerHTML = ' ';
-        createKeys(keyMode.keyEn);
+        createKeys(keyMode.keyEn, target);
         break;
       case 'Ру':
         document.querySelector('.keyboard').innerHTML = ' ';
-        createKeys(keyMode.keyRuShift);
+        createKeys(keyMode.keyRuShift, target);
         break;
       case 'РУ':
         document.querySelector('.keyboard').innerHTML = ' ';
-        createKeys(keyMode.keyRu);
+        createKeys(keyMode.keyRu, target);
         break;
       default:
         break;
@@ -90,10 +93,6 @@ const selectedKey = () => {
       case 'Tab':
         input.value += '    ';
         break;
-      // case 'CapsLock':
-      //   pressShift();
-      //   selectedKey();
-      //   break;
       default:
         break;
     }
@@ -102,7 +101,7 @@ const selectedKey = () => {
     el.addEventListener('mousedown', () => {
       el.classList.add('keyboard-key__active');
       if (el.innerText === 'Shift') {
-        pressShift();
+        pressShift('Shift');
       }
     });
     el.addEventListener('mouseleave', () => {
@@ -123,24 +122,24 @@ const selectedKey = () => {
 const pressKey = () => {
   let keyboardKey = document.querySelectorAll('.keyboard-key');
   const input = document.querySelector('.keyboard-input');
-  const pressShift = () => {
+  const pressShift = (target) => {
     const langKeyboard = document.querySelectorAll('.keyboard-key')[64].innerText;
     switch (langKeyboard) {
       case 'En':
         document.querySelector('.keyboard').innerHTML = ' ';
-        createKeys(keyMode.keyEnShift);
+        createKeys(keyMode.keyEnShift, target);
         break;
       case 'EN':
         document.querySelector('.keyboard').innerHTML = ' ';
-        createKeys(keyMode.keyEn);
+        createKeys(keyMode.keyEn, target);
         break;
       case 'Ру':
         document.querySelector('.keyboard').innerHTML = ' ';
-        createKeys(keyMode.keyRuShift);
+        createKeys(keyMode.keyRuShift, target);
         break;
       case 'РУ':
         document.querySelector('.keyboard').innerHTML = ' ';
-        createKeys(keyMode.keyRu);
+        createKeys(keyMode.keyRu, target);
         break;
       default:
         break;
@@ -195,11 +194,9 @@ const pressKey = () => {
       input.value += '    ';
     } else if (el.key === 'CapsLock') {
       activeKey();
-      pressShift();
-      keyboardKey = document.querySelectorAll('.keyboard-key');
     } else if (el.key === 'Shift') {
       activeKey();
-      pressShift();
+      pressShift('Shift');
       keyboardKey = document.querySelectorAll('.keyboard-key');
     } else if (el.key === 'ArrowUp') {
       input.value += '↑';
@@ -233,6 +230,9 @@ const pressKey = () => {
     });
     if (el.key === 'Shift') {
       pressShift();
+    } else if (el.key === 'CapsLock') {
+      pressShift();
+      keyboardKey = document.querySelectorAll('.keyboard-key');
     }
   });
 };
