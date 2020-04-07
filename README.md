@@ -1,6 +1,6 @@
 # virtual-keyboard
 
-https://lugovczov.github.io/virtual-keyboard/
+https://lugovczov.github.io/codejam-virtual-keyboard/
 
 in project include gulp, gulp-sass, browser-sync, ESlint
 
